@@ -9,13 +9,13 @@ namespace AdvancedC_Project1
     public class CityInfo
     {
         //CityInfo variables
-        public int CityID { get; }
-        public string CityName { get; }
-        public string CityAscii { get; }
-        private int Population {  get; }
-        private string Province { get; }
-        private double Latitude { get; }
-        private double Longitude { get; }
+        public int CityID { get; set; }
+        public string CityName { get; set; }
+        public string CityAscii { get; set; }
+        private int Population { get; set; }
+        private string Province { get; set; }
+        private double Latitude { get; set; }
+        private double Longitude { get; set; }
 
 
         //constructor
