@@ -9,17 +9,17 @@ namespace AdvancedC_Project1
     public class CityInfo
     {
         //CityInfo variables
-        public int CityID { get; set; }
-        public string CityName { get; set; }
-        public string CityAscii { get; set; }
-        private int Population { get; set; }
-        private string Province { get; set; }
-        private double Latitude { get; set; }
-        private double Longitude { get; set; }
+        public int CityID { get; }
+        public string CityName { get; }
+        public string CityAscii { get; }
+        private int Population { get; }
+        private string Province { get; }
+        private double Latitude { get; }
+        private double Longitude { get; }
 
 
         //constructor
-        public CityInfo(int id, string CN, string CA, int POP, string P, double Lat, double Lon )
+        public CityInfo(int id, string CN, string CA, int POP, string P, double Lat, double Lon)
         {
             this.CityID = id;
             this.CityName = CN;
@@ -29,8 +29,8 @@ namespace AdvancedC_Project1
             this.Latitude = Lat;
             this.Longitude = Lon;
         }
-        
-        
+
+
         public string GetProvince()
         {
             return this.Province;
