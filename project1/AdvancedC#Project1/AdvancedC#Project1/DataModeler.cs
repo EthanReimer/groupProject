@@ -19,7 +19,7 @@ namespace AdvancedC_Project1
         //Parse JSON method
         public Dictionary<string, CityInfo> ParseJSON(string fileName)
         {
-            //Read the JSON file
+            //Read the JSON file from the data folder
             string filePath = Path.Combine("data", fileName);
             string jsonContent = File.ReadAllText(filePath);
 
@@ -41,7 +41,7 @@ namespace AdvancedC_Project1
 
                 //Gives a default value of 0 if the value is null
                 /*Unhandled exception. Microsoft.CSharp.RuntimeBinder.RuntimeBinderException:
-                Cannot convert null to 'int' because it is a non-nullable value type*/
+                Cannot convert null to 'int'(also double) because it is a non-nullable value type*/
                 double latitude = latitudeNull ?? 0.0; 
                 double longitude = longitudeNull ?? 0.0;
                 int population = populationNull ?? 0;
