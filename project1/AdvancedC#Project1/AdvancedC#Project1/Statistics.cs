@@ -229,6 +229,34 @@ namespace AdvancedC_Project1
             }
         }
 
+        // Displays province population
+        public void DisplayProvincePopulation(string province)
+        {
+            int totalPopulation = CityCatalogue
+                .Where(c => c.Value.GetProvince() == province)
+                .Sum(c => c.Value.GetPopulation());
+
+            Console.WriteLine($"Total population of {province}: {totalPopulation}");
+        }
+
+        // Displays cities in provinces
+        public void DisplayProvinceCities(string province)
+        {
+            var cities = CityCatalogue
+                .Where(c => c.Value.GetProvince() == province)
+                .Select(c => c.Value.CityName)
+                .ToList();
+
+            if (cities.Count > 0)
+            {
+                Console.WriteLine($"Cities in {province}: {string.Join(", ", cities)}");
+            }
+            else
+            {
+                Console.WriteLine($"No cities found for {province}.");
+            }
+        }
+
         //gets the total population for each province, then sorts and displays by the population size
         public void RankProvincesByPopulation()
         {
@@ -250,7 +278,7 @@ namespace AdvancedC_Project1
 
         }
 
-        public void RankprovincesByCities()
+        public void RankProvincesByCities()
         {
 
             Dictionary<string, int> provinceCities = new Dictionary<string, int>();
