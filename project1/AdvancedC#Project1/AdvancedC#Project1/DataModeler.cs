@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,13 +23,13 @@ namespace AdvancedC_Project1
 
             foreach (XmlNode cityNode in cityNodes)
             {
-                string cityName = cityNode.SelectSingleNode("city")?.InnerText;
-                string cityAscii = cityNode.SelectSingleNode("city_ascii")?.InnerText;
+                string? cityName = cityNode.SelectSingleNode("city")?.InnerText;
+                string? cityAscii = cityNode.SelectSingleNode("city_ascii")?.InnerText;
                 double latitude = double.Parse(cityNode.SelectSingleNode("lat")?.InnerText);
                 double longitude = double.Parse(cityNode.SelectSingleNode("lng")?.InnerText);
                 int population = int.Parse(cityNode.SelectSingleNode("population")?.InnerText);
                 int cityID = int.Parse(cityNode.SelectSingleNode("id")?.InnerText);
-                string province = cityNode.SelectSingleNode("admin_name")?.InnerText;
+                string? province = cityNode.SelectSingleNode("admin_name")?.InnerText;
 
                 CityInfo cityInfo = new CityInfo(cityID, cityName, cityAscii, population, province, latitude, longitude);
 
@@ -78,9 +79,30 @@ namespace AdvancedC_Project1
         }
 
         //Parse CSV method
-        public void ParseCSV(string fileName)
+        public Dictionary<string, CityInfo> ParseCSV(string fileName)
         {
-            Console.WriteLine($"Parsing CSV file: {fileName}");
+            Dictionary<string, CityInfo> cityCatalogue = new Dictionary<string, CityInfo>();
+            using (StreamReader reader = new StreamReader(Path.Combine("data", fileName)))
+            {
+                string headerLine = reader.ReadLine(); // Read the header
+                while (!reader.EndOfStream)
+                {
+                    string line = reader.ReadLine();
+                    string[] fields = line.Split(','); // Split by comma
+
+                    string cityName = fields[0].Trim();
+                    string cityAscii = fields[1].Trim();
+                    double latitude = double.Parse(fields[2].Trim());
+                    double longitude = double.Parse(fields[3].Trim());
+                    string province = fields[5].Trim();
+                    int population = int.TryParse(fields[7].Trim(), out int pop) ? pop : 0;
+                    int cityID = int.Parse(fields[8].Trim());
+
+                    CityInfo cityInfo = new CityInfo(cityID, cityName, cityAscii, population, province, latitude, longitude);
+                    cityCatalogue[cityName] = cityInfo;
+                }
+            }
+            return cityCatalogue;
         }
 
         //Delegate for parsing methods
@@ -100,6 +122,7 @@ namespace AdvancedC_Project1
                     parser = ParseJSON;
                     break;
                 case "csv":
+                    parser = ParseCSV;
                     break;
                 default:
                     throw new ArgumentException("Invalid file type.");
