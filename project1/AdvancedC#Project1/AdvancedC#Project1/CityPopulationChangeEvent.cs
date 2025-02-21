@@ -15,7 +15,7 @@ namespace AdvancedC_Project1
         // Method to trigger the event
         public void UpdatePopulation(string cityName, long oldPopulation, long newPopulation, string fileName)
         {
-            OnPopulationChanged($" The {cityName} will update it's population from {oldPopulation} to {newPopulation} in {fileName}");
+            OnPopulationChanged($"The population of {cityName} will be updated from {oldPopulation} to {newPopulation} in {fileName}.");
         }
 
         protected virtual void OnPopulationChanged(string message)

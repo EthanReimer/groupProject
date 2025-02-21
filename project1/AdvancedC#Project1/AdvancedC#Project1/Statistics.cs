@@ -35,7 +35,7 @@ namespace AdvancedC_Project1
 
                     Console.WriteLine(new string('-', 50));
                     Console.WriteLine($"City ID: {cityOutput.CityID}\n" +
-                                      $"City name and province: {cityOutput.CityName}, {cityOutput.GetProvince()}\n" +
+                                      $"City Name and Province: {cityOutput.CityName}, {cityOutput.GetProvince()}\n" +
                                       $"City Location: {cityOutput.GetLocation()}\n" +
                                       $"City Population: {cityOutput.GetPopulation()}\n" +
                                       $"City Ascii: {cityOutput.CityAscii}");
@@ -46,7 +46,7 @@ namespace AdvancedC_Project1
 
             if (!foundCity)
             {
-                Console.WriteLine($"no cities by the name {CityName} are in our data.");
+                Console.WriteLine($"No cities by the name {CityName} are in our data.");
             }
         }
 
@@ -73,7 +73,7 @@ namespace AdvancedC_Project1
 
             if (!foundProvince)
             {
-                Console.WriteLine($"no province by the name {province} exists in our data.");
+                Console.WriteLine($"No province by the name {province} exists in our data.");
             }
             else
             {
@@ -81,7 +81,7 @@ namespace AdvancedC_Project1
                 {
                     if (city.Value.CityID == cityID)
                     {
-                        Console.WriteLine($"city with largest popultion in {city.Value.GetProvince()}: {city.Value.CityName} {city.Value.CityName} popualtion: {city.Value.GetPopulation()}");
+                        Console.WriteLine($"City with largest popultion in {city.Value.GetProvince()}: {city.Value.CityName} {city.Value.CityName} Population: {city.Value.GetPopulation()}");
                         break;
                     }
                 }
@@ -118,7 +118,7 @@ namespace AdvancedC_Project1
 
             if (!foundProvince)
             {
-                Console.WriteLine($"no province by the name {province} exists in our data.");
+                Console.WriteLine($"No province by the name {province} exists in our data.");
             }
             else
             {
@@ -126,7 +126,7 @@ namespace AdvancedC_Project1
                 {
                     if (city.Value.CityID == cityID)
                     {
-                        Console.WriteLine($"city with lowest popultion in {city.Value.GetProvince()}: {city.Value.CityName} popualtion: {city.Value.GetPopulation()}");
+                        Console.WriteLine($"City with lowest popultion in {city.Value.GetProvince()}: {city.Value.CityName} Population: {city.Value.GetPopulation()}");
                         break;
                     }
                 }
