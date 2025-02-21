@@ -45,21 +45,21 @@ class Program
 
         Statistics stats = new Statistics(fileName, fileType);
         //test to see if it works
-        foreach (var city in stats.CityCatalogue)
-        {
-            CityInfo cityInfo = city.Value; 
+        //foreach (var city in stats.CityCatalogue)
+        //{
+        //    CityInfo cityInfo = city.Value; 
 
-            Console.WriteLine($"City Name: {cityInfo.CityName}");
-            Console.WriteLine($"City Ascii: {cityInfo.CityAscii}");
-            Console.WriteLine($"City ID: {cityInfo.CityID}");
-            Console.WriteLine($"Population: {cityInfo.GetPopulation()}");
-            Console.WriteLine($"Province: {cityInfo.GetProvince()}");
+        //    Console.WriteLine($"City Name: {cityInfo.CityName}");
+        //    Console.WriteLine($"City Ascii: {cityInfo.CityAscii}");
+        //    Console.WriteLine($"City ID: {cityInfo.CityID}");
+        //    Console.WriteLine($"Population: {cityInfo.GetPopulation()}");
+        //    Console.WriteLine($"Province: {cityInfo.GetProvince()}");
 
-            double[] location = cityInfo.GetLocation();
-            Console.WriteLine($"Latitude: {location[0]}");
-            Console.WriteLine($"Longitude: {location[1]}");
+        //    double[] location = cityInfo.GetLocation();
+        //    Console.WriteLine($"Latitude: {location[0]}");
+        //    Console.WriteLine($"Longitude: {location[1]}");
 
-        }
+        //}
     }
 }
 
