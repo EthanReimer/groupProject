@@ -196,6 +196,38 @@ namespace AdvancedC_Project1
 
         public void CalculateDistanceBetweenCities(string city1, string city2)
         {
+            //make two variables that find the city in the dictionary and get the location
+            try
+            {
+                CityInfo cityInfo1 = CityCatalogue[city1];
+                CityInfo cityInfo2 = CityCatalogue[city2];
+
+                double lat1 = cityInfo1.GetLocation()[0];
+                double lon1 = cityInfo1.GetLocation()[1];
+
+                double lat2 = cityInfo2.GetLocation()[0];
+                double lon2 = cityInfo2.GetLocation()[1];
+
+                //Haversine formula
+                double R = 6371; // Radius of the earth in km
+
+                double dLat = (lat2 - lat1) * (Math.PI / 180);
+                double dLon = (lon2 - lon1) * (Math.PI / 180);
+
+                double a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) + Math.Cos(lat1 * (Math.PI / 180)) * Math.Cos(lat2 * (Math.PI / 180)) * Math.Sin(dLon / 2) * Math.Sin(dLon / 2);
+
+                double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+
+                double distance = R * c; // Distance in km
+
+                Console.WriteLine($"The distance between {city1} and {city2} is {distance} km.");
+            }
+            catch (KeyNotFoundException)
+            {
+                Console.WriteLine("One or both of the cities are not in our data.");
+                return;
+            }
+        }
 
         //gets the total population for each province, then sorts and displays by the population size
         public void RankProvincesByPopulation()
