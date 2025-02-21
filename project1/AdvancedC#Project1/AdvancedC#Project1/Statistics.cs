@@ -235,7 +235,10 @@ namespace AdvancedC_Project1
             int totalPopulation = 0;
             foreach (var city in CityCatalogue.Values)
             {
-                totalPopulation += city.GetPopulation(); 
+                if (city.GetProvince().Equals(province)) 
+                {
+                    totalPopulation += city.GetPopulation();
+                }
             }
             Console.WriteLine($"Total population of {province}: {totalPopulation}");
         }
