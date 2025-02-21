@@ -19,15 +19,15 @@ namespace AdvancedC_Project1
 
 
         //constructor
-        public CityInfo(int id, string CN, string CA, int POP, string P, double Lat, double Lon)
+        public CityInfo(int cityID, string cityName, string cityAscii, int population, string province, double latitude, double longitude)
         {
-            this.CityID = id;
-            this.CityName = CN;
-            this.CityAscii = CA;
-            this.Population = POP;
-            this.Province = P;
-            this.Latitude = Lat;
-            this.Longitude = Lon;
+            this.CityID = cityID;
+            this.CityName = cityName;
+            this.CityAscii = cityAscii;
+            this.Population = population;
+            this.Province = province;
+            this.Latitude = latitude;
+            this.Longitude = longitude;
         }
 
 
