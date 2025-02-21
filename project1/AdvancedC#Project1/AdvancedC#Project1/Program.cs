@@ -27,16 +27,16 @@ class Program
         switch (choice)
         {
             case 1:
-                fileType = "xml";
-                fileName = "Canadacities-XML.xml"; 
+                fileType = "csv";
+                fileName = "Canadacities.csv"; 
                 break;
             case 2:
                 fileType = "json";
                 fileName = "Canadacities-JSON.json";
                 break;
             case 3:
-                fileType = "csv";
-                fileName = "Canadacities.csv"; 
+                fileType = "xml";
+                fileName = "Canadacities-XML.xml"; 
                 break;
             default:
                 Console.WriteLine("Invalid choice.");

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 
 namespace AdvancedC_Project1
@@ -11,9 +12,29 @@ namespace AdvancedC_Project1
     public class DataModeler
     {
         //Parse XML method
-        public void ParseXML(string fileName)
+        public Dictionary<string, CityInfo> ParseXML(string fileName)
         {
-            Console.WriteLine($"Parsing XML file: {fileName}");
+            Dictionary<string, CityInfo> cityCatalogue = new Dictionary<string, CityInfo>();
+            XmlDocument doc = new XmlDocument();
+
+            doc.Load(Path.Combine("data", fileName));
+            XmlNodeList cityNodes = doc.SelectNodes("//CanadaCity");
+
+            foreach (XmlNode cityNode in cityNodes)
+            {
+                string cityName = cityNode.SelectSingleNode("city")?.InnerText;
+                string cityAscii = cityNode.SelectSingleNode("city_ascii")?.InnerText;
+                double latitude = double.Parse(cityNode.SelectSingleNode("lat")?.InnerText);
+                double longitude = double.Parse(cityNode.SelectSingleNode("lng")?.InnerText);
+                int population = int.Parse(cityNode.SelectSingleNode("population")?.InnerText);
+                int cityID = int.Parse(cityNode.SelectSingleNode("id")?.InnerText);
+                string province = cityNode.SelectSingleNode("admin_name")?.InnerText;
+
+                CityInfo cityInfo = new CityInfo(cityID, cityName, cityAscii, population, province, latitude, longitude);
+
+                cityCatalogue[cityName] = cityInfo;
+            }
+            return cityCatalogue;
         }
 
         //Parse JSON method
@@ -73,6 +94,7 @@ namespace AdvancedC_Project1
             switch (fileType.ToLower())
             {
                 case "xml":
+                    parser = ParseXML;
                     break;
                 case "json":
                     parser = ParseJSON;
