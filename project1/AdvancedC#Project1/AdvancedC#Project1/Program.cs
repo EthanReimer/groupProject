@@ -2,6 +2,10 @@
 using AdvancedC_Project1;
 using System;
 
+// TO DO:
+// 1) Incorporate all the methods he asked us to, probably part of the switch case list: "ShowCityOnMap", "DisplaySmallestPopulationCity", "DisplayLargestPopulationCity", "RankProvincesByPopualtion", "RankProvincesByCities", "GetCapital", and the CityPopulationChangeEvent.
+// 2) Make sure everything works.
+// 3) Work on the infinite loop! Remember that the user can enter 'exit' or 'restart' at any prompt, so string choice, THEN int.TryParse
 class Program
 {
     static void Main(string[] args)

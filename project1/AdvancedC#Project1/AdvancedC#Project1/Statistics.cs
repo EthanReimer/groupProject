@@ -36,8 +36,7 @@ namespace AdvancedC_Project1
                     Console.WriteLine(new string('-', 50));
                     Console.WriteLine($"City ID: {cityOutput.CityID}\n" +
                                       $"City Name and Province: {cityOutput.CityName}, {cityOutput.GetProvince()}\n" +
-                                      $"City Location Lat: {cityOutput.GetLocation()[0]}\n" +
-                                      $"City Location Long: {cityOutput.GetLocation()[1]}\n" +
+                                      $"City Location: {cityOutput.GetLocation()}\n" +
                                       $"City Population: {cityOutput.GetPopulation()}\n" +
                                       $"City Ascii: {cityOutput.CityAscii}");
 
@@ -82,7 +81,7 @@ namespace AdvancedC_Project1
                 {
                     if (city.Value.CityID == cityID)
                     {
-                        Console.WriteLine($"City with largest popultion in {city.Value.GetProvince()}: {city.Value.CityName} {city.Value.CityName} Population: {city.Value.GetPopulation()}");
+                        Console.WriteLine($"City with largest population in {city.Value.GetProvince()}: {city.Value.CityName} {city.Value.CityName} Population: {city.Value.GetPopulation()}");
                         break;
                     }
                 }
@@ -127,7 +126,7 @@ namespace AdvancedC_Project1
                 {
                     if (city.Value.CityID == cityID)
                     {
-                        Console.WriteLine($"City with lowest popultion in {city.Value.GetProvince()}: {city.Value.CityName} Population: {city.Value.GetPopulation()}");
+                        Console.WriteLine($"City with lowest population in {city.Value.GetProvince()}: {city.Value.CityName} Population: {city.Value.GetPopulation()}");
                         break;
                     }
                 }
@@ -159,9 +158,9 @@ namespace AdvancedC_Project1
             }
 
             if (popCity1 > popCity2)
-                Console.WriteLine($"{city1}'s population of {popCity1} is greater than {city2}'s population of {popCity2}");
+                Console.WriteLine($"{city1} has a larger population than {city2} with a population of {popCity1} people.");
             else
-                Console.WriteLine($"{city2}'s population of {popCity2} is greater than {city1}'s population of {popCity1}");
+                Console.WriteLine($"{city2} has a larger population than {city1} with a population of {popCity2} people.");
 
         }
 
