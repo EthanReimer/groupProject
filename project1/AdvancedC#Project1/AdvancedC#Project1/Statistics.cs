@@ -5,6 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*
+ * Author: Carl, Cody, Trish, Ethan
+ * Date: 2025-02-17
+ */
+
 namespace AdvancedC_Project1
 {
     public class Statistics

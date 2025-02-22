@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 using System.Diagnostics.Metrics;
 using System.Xml;
 
+/*
+ * Author: Carl, Cody, Trish, Ethan
+ * Date: 2025-02-17
+ */
 
 namespace AdvancedC_Project1
 {

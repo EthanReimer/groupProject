@@ -1,6 +1,11 @@
 ﻿using AdvancedC_Project1;
 using System;
 
+/*
+ * Author: Carl, Cody, Trish, Ethan
+ * Date: 2025-02-17
+ */
+
 class Program
 {
     static void Main(string[] args)
@@ -131,9 +136,9 @@ class Program
                             Console.WriteLine("Invalid population input.");
                         }
                         break;
-                    //case 13:
-                    //    Console.WriteLine("Restarting program...");
-                    //    return;
+                    case 13:
+                        Console.WriteLine("Restarting program...");
+                        return;
                 }
             }
         }

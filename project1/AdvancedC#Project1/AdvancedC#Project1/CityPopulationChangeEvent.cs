@@ -4,6 +4,11 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Xml;
 
+/*
+ * Author: Carl, Cody, Trish, Ethan
+ * Date: 2025-02-17
+ */
+
 namespace AdvancedC_Project1
 {
     public class CityPopulationChangeEvent
