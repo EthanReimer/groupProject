@@ -1,9 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
-using AdvancedC_Project1;
+﻿using AdvancedC_Project1;
 using System;
 
 // TO DO:
-// 1) Incorporate all the methods he asked us to, probably part of the switch case list: "ShowCityOnMap", "DisplaySmallestPopulationCity", "DisplayLargestPopulationCity", "RankProvincesByPopualtion", "RankProvincesByCities", "GetCapital", and the CityPopulationChangeEvent.
 // 2) Make sure everything works.
 // 3) Work on the infinite loop! Remember that the user can enter 'exit' or 'restart' at any prompt, so string choice, THEN int.TryParse
 class Program
@@ -55,56 +53,89 @@ class Program
 
 
         Statistics stats = new Statistics(fileName, fileType);
+        CityPopulationChangeEvent populationEvent = new CityPopulationChangeEvent();
+        populationEvent.PopulationChanged += (sender, message) => Console.WriteLine(message);
         switch (queryChoice)
         {
             case 1:
                 Console.Write("\nEnter city name to display information: ");
-                string cityName = Console.ReadLine();
-                stats.DisplayCityInformation(cityName);
+                stats.DisplayCityInformation(Console.ReadLine());
                 break;
             case 2:
                 Console.Write("\nEnter province name to display cities: ");
-                string province1 = Console.ReadLine();
-                stats.DisplayProvinceCities(province1);
+                stats.DisplayProvinceCities(Console.ReadLine());
                 break;
             case 3:
                 Console.Write("\nEnter province name to calculate population: ");
-                string province2 = Console.ReadLine();
-                stats.DisplayProvincePopulation(province2);
+                stats.DisplayProvincePopulation(Console.ReadLine());
                 break;
             case 4:
-                Console.Write("\nEnter two city names, separated by a comma, to see which city has the larger population (e.g. London, Toronto): ");
-                string[] cities = Console.ReadLine().Split(',');
-                if (cities.Length == 2)
-                {
-                    stats.CompareCitiesPopulations(cities[0].Trim(), cities[1].Trim());
-                }
-                else
-                {
-                    Console.WriteLine("Invalid input, please enter two city names.");
-                }
+                Console.Write("\nEnter two city names, separated by a comma, to compare populations: ");
+                var cities = Console.ReadLine().Split(',');
+                if (cities.Length == 2) stats.CompareCitiesPopulations(cities[0].Trim(), cities[1].Trim());
+                else Console.WriteLine("Invalid input.");
                 break;
             case 5:
-                Console.Write("\nEnter two city names, separated by a comma, to calculate distance (e.g. London, Toronto): ");
-                string[] distanceCities = Console.ReadLine().Split(',');
-                if (distanceCities.Length == 2)
+                Console.Write("\nEnter two city names, separated by a comma, to calculate distance: ");
+                var distanceCities = Console.ReadLine().Split(',');
+                if (distanceCities.Length == 2) stats.CalculateDistanceBetweenCities(distanceCities[0].Trim(), distanceCities[1].Trim());
+                else Console.WriteLine("Invalid input.");
+                break;
+            case 6:
+                Console.Write("\nEnter city and province to show on map (e.g. Toronto, Ontario): ");
+                var location = Console.ReadLine().Split(',');
+                if (location.Length == 2) stats.ShowCityOnMap(location[0].Trim(), location[1].Trim());
+                else Console.WriteLine("Invalid input.");
+                break;
+            case 7:
+                Console.Write("\nEnter province name to display the smallest population city: ");
+                stats.DisplaySmallestPopulationCity(Console.ReadLine());
+                break;
+            case 8:
+                Console.Write("\nEnter province name to display the largest population city: ");
+                stats.DisplayLargestPopulationCity(Console.ReadLine());
+                break;
+            case 9:
+                stats.RankProvincesByPopulation();
+                break;
+            case 10:
+                stats.RankProvincesByCities();
+                break;
+            case 11:
+                Console.Write("\nEnter province name to get its capital: ");
+                stats.GetCapital(Console.ReadLine());
+                break;
+            // Not so sure about this one
+            case 12:
+                Console.Write("\nEnter city name to update population: ");
+                string cityName = Console.ReadLine();
+                Console.Write("Enter new population: ");
+                if (long.TryParse(Console.ReadLine(), out long newPopulation))
                 {
-                    stats.CalculateDistanceBetweenCities(distanceCities[0].Trim(), distanceCities[1].Trim());
+                    var city = stats.CityCatalogue.ContainsKey(cityName) ? stats.CityCatalogue[cityName] : null;
+                    if (city != null)
+                    {
+                        long oldPopulation = city.GetPopulation();
+                        populationEvent.UpdatePopulation(cityName, oldPopulation, newPopulation, fileName);
+                    }
+                    else
+                    {
+                        Console.WriteLine("City not found.");
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("Invalid input, please enter two city names.");
+                    Console.WriteLine("Invalid population input.");
                 }
                 break;
-            case 6:
+            case 13:
                 Console.WriteLine("Restarting program...");
                 Main(args);
                 return;
             default:
-                Console.WriteLine("Invalid choice, please try again.");
+                Console.WriteLine("Invalid choice.");
                 break;
         }
-
 
         // Method to display query options based on file name
         static void DisplayQueryOptions(string fileName)
@@ -114,9 +145,17 @@ class Program
             Console.WriteLine("3) Calculate Province Population");
             Console.WriteLine("4) Match Cities Population");
             Console.WriteLine("5) Distance Between Cities");
-            Console.WriteLine("6) Restart Program And Choose Another File Or File Type To Query");
+            Console.WriteLine("6) Show City on Map");
+            Console.WriteLine("7) Display Smallest Population City");
+            Console.WriteLine("8) Display Largest Population City");
+            Console.WriteLine("9) Rank Provinces by Population");
+            Console.WriteLine("10) Rank Provinces by Number of Cities");
+            Console.WriteLine("11) Get Capital of a Province");
+            Console.WriteLine("12) Update City Population");
+            Console.WriteLine("13) Restart Program And Choose Another File Or File Type To Query");
             Console.Write($"\nSelect a data query routine from the list above for the {fileName} file (e.g. 1,2): ");
         }
+
     }
 }
 
