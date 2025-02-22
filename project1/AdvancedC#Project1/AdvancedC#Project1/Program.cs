@@ -100,22 +100,7 @@ class Program
                 Console.WriteLine("Invalid choice, please try again.");
                 break;
         }
-        //test to see if it works
-        //foreach (var city in stats.CityCatalogue)
-        //{
-        //    CityInfo cityInfo = city.Value; 
 
-        //    Console.WriteLine($"City Name: {cityInfo.CityName}");
-        //    Console.WriteLine($"City Ascii: {cityInfo.CityAscii}");
-        //    Console.WriteLine($"City ID: {cityInfo.CityID}");
-        //    Console.WriteLine($"Population: {cityInfo.GetPopulation()}");
-        //    Console.WriteLine($"Province: {cityInfo.GetProvince()}");
-
-        //    double[] location = cityInfo.GetLocation();
-        //    Console.WriteLine($"Latitude: {location[0]}");
-        //    Console.WriteLine($"Longitude: {location[1]}");
-
-        //}
 
         // Method to display query options based on file name
         static void DisplayQueryOptions(string fileName)

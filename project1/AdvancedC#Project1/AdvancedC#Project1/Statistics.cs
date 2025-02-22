@@ -36,7 +36,8 @@ namespace AdvancedC_Project1
                     Console.WriteLine(new string('-', 50));
                     Console.WriteLine($"City ID: {cityOutput.CityID}\n" +
                                       $"City Name and Province: {cityOutput.CityName}, {cityOutput.GetProvince()}\n" +
-                                      $"City Location: {cityOutput.GetLocation()}\n" +
+                                      $"City Location Lat: {cityOutput.GetLocation()[0]}\n" +
+                                      $"City Location Long: {cityOutput.GetLocation()[1]}\n" +
                                       $"City Population: {cityOutput.GetPopulation()}\n" +
                                       $"City Ascii: {cityOutput.CityAscii}");
 
